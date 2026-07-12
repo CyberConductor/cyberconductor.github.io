@@ -43,20 +43,25 @@ const username = "CyberConductor";
 
 fetch(`https://api.github.com/users/${username}/repos?per_page=100`)
 .then(response => {
+
     if (!response.ok) {
         throw new Error(`GitHub API error: ${response.status}`);
     }
 
     return response.json();
+
 })
 .then(repos => {
+
     if (!Array.isArray(repos)) {
         throw new Error("Unexpected GitHub response");
     }
 
+
     const container = document.getElementById("repo-container");
 
     container.innerHTML = "";
+
 
     const excludedRepositories = [
         "meetnotify",
@@ -65,45 +70,71 @@ fetch(`https://api.github.com/users/${username}/repos?per_page=100`)
         "cyberconductor.github.io"
     ];
 
+
     const visibleRepos = repos
         .filter(repo => repo && repo.name)
         .filter(repo => !excludedRepositories.includes(repo.name.toLowerCase()))
         .slice(0, 5);
 
+
+    // Temporary private project card
     const featuredCard = `
         <div class="card">
             <h3>ApiScanner</h3>
-            <p>Coming soon — a tool for scanning and analyzing APIs.</p>
-            <a href="#projects">Coming Soon →</a>
+            <p>Private API security scanner project. Coming soon.</p>
+            <a href="#projects">
+                Coming Soon →
+            </a>
         </div>
     `;
 
-    if (visibleRepos.length === 0) {
-        container.innerHTML = featuredCard;
-        return;
-    }
 
-    container.innerHTML += featuredCard;
+    container.innerHTML = featuredCard;
+
 
     visibleRepos.forEach(repo => {
+
         container.innerHTML += `
         <div class="card">
+
             <h3>${repo.name}</h3>
-            <p>${repo.description || "No description"}</p>
-            <a href="${repo.html_url}" target="_blank" rel="noopener noreferrer">
+
+            <p>
+                ${repo.description || "No description"}
+            </p>
+
+            <a href="${repo.html_url}" 
+               target="_blank" 
+               rel="noopener noreferrer">
                 View Repository →
             </a>
+
         </div>
         `;
+
     });
+
 })
 .catch(error => {
+
     console.error("GitHub API error:", error);
+
     const container = document.getElementById("repo-container");
 
     if (container) {
-        container.innerHTML = "<p>Unable to load projects right now.</p>";
+
+        container.innerHTML = `
+            <div class="card">
+                <h3>ApiScanner</h3>
+                <p>Private API security scanner project. Coming soon.</p>
+                <a href="#projects">
+                    Coming Soon →
+                </a>
+            </div>
+        `;
+
     }
+
 });
 
 
@@ -119,18 +150,18 @@ menu.onclick = () => {
 
 
 // Theme toggle
-const themeToggle =
-    document.getElementById("theme-toggle");
+const themeToggle = document.getElementById("theme-toggle");
 
 const body = document.body;
 
 
-const savedTheme =
-    localStorage.getItem("theme");
+const savedTheme = localStorage.getItem("theme");
 
 
 if (savedTheme) {
+
     body.setAttribute("data-theme", savedTheme);
+
 }
 
 

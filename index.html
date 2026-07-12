@@ -1,191 +1,108 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>CyberConductor | Portfolio</title>
-
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CyberConductor | Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="style.css" />
 </head>
-
-
-<body>
-
-
-<header>
-
-<nav>
-
-<h2 class="logo">
-CyberConductor
-</h2>
-
-
-<button id="menu">
-☰
-</button>
-
-
-<div class="nav-links">
-
-<a href="#about">About</a>
-<a href="#projects">Projects</a>
-<a href="https://cybergalx.com">Website(Under Construction)</a>
-
-</div>
-
-
-</nav>
-
-</header>
-
-
-
-<section class="hero">
-
-
-<div class="terminal">
-
-<p>
-root@portfolio:~$
-</p>
-
-
-<h1>
-<span id="typing"></span>
-</h1>
-
-
-<p>
-Cybersecurity enthusiast | Developer | Technology Explorer
-</p>
-
-
-<a class="button" href="https://github.com/cyberconductor">
-GitHub
-</a>
-
-
-</div>
-
-
-</section>
-
-
-
-
-
-<section id="about" class="hidden">
-
-
-<h2>
-About Me
-</h2>
-
-
-<p>
-
-I am a programmer interested in cybersecurity,
-software development, networking and security research.
-
-<br><br>
-
-I create projects to improve my skills and explore
-new technologies.
-
-</p>
-
-
-</section>
-
-
-
-
-
-
-<section id="skills" class="hidden">
-
-<h2>
-Skills
-</h2>
-
-
-<div class="skills">
-
-
-<span>Python</span>
-<span>C</span>
-<span>JavaScript</span>
-<span>HTML/CSS</span>
-<span>Linux</span>
-<span>Cybersecurity</span>
-<span>Networking</span>
-
-
-</div>
-
-
-</section>
-
-
-
-
-
-
-<section id="projects">
-
-
-<h2>
-GitHub Projects
-</h2>
-
-
-<div id="repo-container" class="cards">
-
-Loading repositories...
-
-</div>
-
-
-</section>
-
-
-
-
-
-<section class="hidden">
-
-
-<h2>
-Links
-</h2>
-
-
-<a class="button" href="https://cybergalx.com">
-Main Website
-</a>
-
-
-</section>
-
-
-
-
-
-<footer>
-
-<p>
-© <span id="year"></span> CyberConductor
-</p>
-
-</footer>
-
-
-
-<script src="script.js"></script>
-
-
+<body data-theme="dark">
+  <header>
+    <nav>
+      <span class="logo"><span class="dot"></span>CyberConductor</span>
+
+      <div class="nav-right">
+        <div class="nav-links" id="nav-links">
+          <a href="#about">About</a>
+          <a href="#skills">Skills</a>
+          <a href="#projects">Projects</a>
+          <a href="https://cybergalx.com" target="_blank" rel="noopener">Website</a>
+        </div>
+
+        <div class="action-buttons">
+          <button id="theme-toggle" class="theme-toggle" aria-label="Toggle light and dark mode">
+            <svg id="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+              <circle cx="12" cy="12" r="4"></circle>
+              <path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path>
+            </svg>
+            <svg id="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" style="display:none">
+              <path d="M21 12.8A9 9 0 1 1 11.2 3 7 7 0 0 0 21 12.8z"></path>
+            </svg>
+          </button>
+
+          <button id="menu" aria-label="Toggle navigation menu" aria-expanded="false">☰</button>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="terminal">
+        <div class="terminal-bar">
+          <span class="dot dot-r"></span>
+          <span class="dot dot-y"></span>
+          <span class="dot dot-g"></span>
+          <span class="path">~/portfolio</span>
+        </div>
+        <div class="terminal-body">
+          <p class="prompt"><span class="user">root</span>@portfolio:~$</p>
+          <h1><span id="typing"></span><span class="cursor"></span></h1>
+          <p class="tagline">Cybersecurity enthusiast · Developer · Technology explorer</p>
+          <a class="button" href="https://github.com/cyberconductor" target="_blank" rel="noopener">
+            View GitHub →
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section id="about" class="hidden">
+      <p class="section-label">cat about.txt</p>
+      <h2>About Me</h2>
+      <p>
+        I am a programmer interested in cybersecurity, software development,
+        networking and security research.
+        <br /><br />
+        I build projects to sharpen my skills and explore new technologies.
+      </p>
+    </section>
+
+    <section id="skills" class="hidden">
+      <p class="section-label">ls skills/</p>
+      <h2>Skills</h2>
+      <div class="skills">
+        <span>Python</span>
+        <span>C</span>
+        <span>JavaScript</span>
+        <span>HTML/CSS</span>
+        <span>Linux</span>
+        <span>Cybersecurity</span>
+        <span>Networking</span>
+      </div>
+    </section>
+
+    <section id="projects" class="hidden">
+      <p class="section-label">ls projects/</p>
+      <h2>GitHub Projects</h2>
+      <div id="repo-container" class="cards">Loading repositories…</div>
+    </section>
+
+    <section class="hidden">
+      <p class="section-label">cat links.txt</p>
+      <h2>Links</h2>
+      <a class="button ghost" href="https://cybergalx.com" target="_blank" rel="noopener">Main Website →</a>
+    </section>
+  </main>
+
+  <footer>
+    <p>© <span id="year"></span> CyberConductor</p>
+  </footer>
+
+  <script src="script.js"></script>
 </body>
 </html>

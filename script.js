@@ -1,81 +1,128 @@
 const text = "Hello, I'm CyberConductor";
+
 let index = 0;
 
 function typing() {
-  if (index < text.length) {
-    document.getElementById('typing').textContent += text[index];
-    index += 1;
-    setTimeout(typing, 66);
-  }
+    if (index < text.length) {
+        document.getElementById("typing").innerHTML += text[index];
+
+        index++;
+
+        setTimeout(typing, 80);
+    }
 }
 
 typing();
 
-const themeToggle = document.getElementById('theme-toggle');
-const iconSun = document.getElementById('icon-sun');
-const iconMoon = document.getElementById('icon-moon');
-const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-const storedTheme = localStorage.getItem('theme');
-const initialTheme = storedTheme || (prefersDark ? 'dark' : 'light');
 
-document.body.dataset.theme = initialTheme;
-updateThemeIcon(initialTheme);
+// Current year
+document.getElementById("year").textContent =
+    new Date().getFullYear();
 
-themeToggle.addEventListener('click', () => {
-  const nextTheme = document.body.dataset.theme === 'dark' ? 'light' : 'dark';
-  document.body.dataset.theme = nextTheme;
-  localStorage.setItem('theme', nextTheme);
-  updateThemeIcon(nextTheme);
+
+// Scroll animations
+const observer = new IntersectionObserver(entries => {
+
+    entries.forEach(entry => {
+
+        if (entry.isIntersecting) {
+            entry.target.classList.add("show");
+        }
+
+    });
+
 });
 
-function updateThemeIcon(theme) {
-  if (theme === 'dark') {
-    iconSun.style.display = 'block';
-    iconMoon.style.display = 'none';
-  } else {
-    iconSun.style.display = 'none';
-    iconMoon.style.display = 'block';
-  }
+
+document.querySelectorAll(".hidden")
+    .forEach(el => observer.observe(el));
+
+
+// GitHub repositories
+const username = "YOUR_USERNAME";
+
+fetch(`https://api.github.com/users/${username}/repos`)
+.then(response => response.json())
+.then(repos => {
+
+    const container =
+        document.getElementById("repo-container");
+
+    container.innerHTML = "";
+
+    repos.slice(0, 6).forEach(repo => {
+
+        container.innerHTML += `
+
+        <div class="card">
+
+            <h3>${repo.name}</h3>
+
+            <p>
+                ${repo.description || "No description"}
+            </p>
+
+            <a href="${repo.html_url}">
+                View Repository →
+            </a>
+
+        </div>
+
+        `;
+
+    });
+
+})
+.catch(error => {
+    console.log("GitHub API error:", error);
+});
+
+
+// Mobile menu
+const menu = document.getElementById("menu");
+const links = document.querySelector(".nav-links");
+
+menu.onclick = () => {
+
+    links.classList.toggle("open");
+
+};
+
+
+// Theme toggle
+const themeToggle =
+    document.getElementById("theme-toggle");
+
+const body = document.body;
+
+
+const savedTheme =
+    localStorage.getItem("theme");
+
+
+if (savedTheme) {
+    body.setAttribute("data-theme", savedTheme);
 }
 
-document.getElementById('year').textContent = new Date().getFullYear();
 
-const observer = new IntersectionObserver(
-  (entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('show');
-      }
-    });
-  },
-  { threshold: 0.18 }
-);
+themeToggle.onclick = () => {
 
-document.querySelectorAll('.hidden').forEach((el) => observer.observe(el));
+    const currentTheme =
+        body.getAttribute("data-theme");
 
-const username = 'cyberconductor';
-fetch(`https://api.github.com/users/${username}/repos`)
-  .then((response) => response.json())
-  .then((repos) => {
-    const container = document.getElementById('repo-container');
-    container.innerHTML = '';
 
-    repos.slice(0, 6).forEach((repo) => {
-      container.innerHTML += `
-        <div class="card">
-          <h3>${repo.name}</h3>
-          <p>${repo.description || 'No description'}</p>
-          <a href="${repo.html_url}" target="_blank" rel="noopener">View Repository →</a>
-        </div>
-      `;
-    });
-  })
-  .catch(() => {
-    document.getElementById('repo-container').textContent = 'Unable to load repositories.';
-  });
+    const newTheme =
+        currentTheme === "dark"
+        ? "light"
+        : "dark";
 
-const menu = document.getElementById('menu');
-menu.onclick = () => {
-  const isOpen = document.body.classList.toggle('nav-open');
-  menu.setAttribute('aria-expanded', String(isOpen));
+
+    body.setAttribute("data-theme", newTheme);
+
+
+    localStorage.setItem(
+        "theme",
+        newTheme
+    );
+
 };

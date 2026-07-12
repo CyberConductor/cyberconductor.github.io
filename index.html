@@ -1,148 +1,190 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>CyberConductor | Portfolio</title>
+
     <link rel="stylesheet" href="style.css">
 </head>
 
+
 <body>
 
-<header>
-    <nav>
-        <h2>CyberConductor</h2>
 
-        <div>
-            <a href="#about">About</a>
-            <a href="#projects">Projects</a>
-            <a href="https://cybergalx.com">Main Website(Under Construction)</a>
-        </div>
-    </nav>
+<header>
+
+<nav>
+
+<h2 class="logo">
+CyberConductor
+</h2>
+
+
+<button id="menu">
+☰
+</button>
+
+
+<div class="nav-links">
+
+<a href="#about">About</a>
+<a href="#projects">Projects</a>
+<a href="https://cybergalx.com">Website(Under Construction)</a>
+
+</div>
+
+
+</nav>
+
 </header>
+
 
 
 <section class="hero">
 
-    <div>
-        <h1>Hello, I'm CyberConductor</h1>
 
-        <p>
-            Cybersecurity enthusiast, programmer, and technology explorer.
-            I build projects, research security, and learn new technologies.
-        </p>
-
-        <a class="button" href="https://github.com/CyberConductor">
-            View GitHub
-        </a>
-    </div>
-
-</section>
-
-
-
-<section id="about">
-
-<h2>About Me</h2>
+<div class="terminal">
 
 <p>
-I am a developer interested in cybersecurity, programming,
-networking, and software development.
-<br><br>
-My projects focus on learning, automation,
-security research, and experimenting with new technologies.
+root@portfolio:~$
 </p>
 
+
+<h1>
+<span id="typing"></span>
+</h1>
+
+
+<p>
+Cybersecurity enthusiast | Developer | Technology Explorer
+</p>
+
+
+<a class="button" href="https://github.com/YOUR_USERNAME">
+GitHub
+</a>
+
+
+</div>
+
+
 </section>
+
+
+
+
+
+<section id="about" class="hidden">
+
+
+<h2>
+About Me
+</h2>
+
+
+<p>
+
+I am a programmer interested in cybersecurity,
+software development, networking and security research.
+
+<br><br>
+
+I create projects to improve my skills and explore
+new technologies.
+
+</p>
+
+
+</section>
+
+
+
+
+
+
+<section id="skills" class="hidden">
+
+<h2>
+Skills
+</h2>
+
+
+<div class="skills">
+
+
+<span>Python</span>
+<span>C</span>
+<span>JavaScript</span>
+<span>HTML/CSS</span>
+<span>Linux</span>
+<span>Cybersecurity</span>
+<span>Networking</span>
+
+
+</div>
+
+
+</section>
+
+
+
 
 
 
 <section id="projects">
 
-<h2>My Repositories</h2>
+
+<h2>
+GitHub Projects
+</h2>
 
 
-<div class="cards">
+<div id="repo-container" class="cards">
 
-
-<div class="card">
-<h3>Security Tools</h3>
-<p>
-Tools and scripts created for cybersecurity learning and research.
-</p>
-
-<a href="https://github.com/CyberConductor">
-GitHub Repository →
-</a>
+Loading repositories...
 
 </div>
 
-
-
-<div class="card">
-
-<h3>Programming Projects</h3>
-
-<p>
-Different programming projects, experiments,
-and applications.
-</p>
-
-<a href="https://github.com/CyberConductor">
-View Projects →
-</a>
-
-</div>
-
-
-
-<div class="card">
-
-<h3>Website</h3>
-
-<p>
-My main website containing additional information and projects.
-</p>
-
-<a href="https://your-domain.com">
-Visit Website →
-</a>
-
-</div>
-
-
-</div>
 
 </section>
 
 
 
-<section id="contact">
 
-<h2>Links</h2>
 
-<div class="links">
+<section class="hidden">
 
-<a href="https://github.com/CyberConductor">
-GitHub
+
+<h2>
+Links
+</h2>
+
+
+<a class="button" href="https://your-domain.com">
+Main Website
 </a>
 
-<a href="https://your-domain.com">
-Website
-</a>
-
-</div>
 
 </section>
+
+
+
 
 
 <footer>
 
 <p>
-© 2026 CyberConductor
+© <span id="year"></span> CyberConductor
 </p>
 
 </footer>
+
+
+
+<script src="script.js"></script>
 
 
 </body>

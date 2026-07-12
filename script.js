@@ -38,8 +38,7 @@ document.querySelectorAll(".hidden")
     .forEach(el => observer.observe(el));
 
 
-// GitHub repositories
-const username = "YOUR_USERNAME";
+const username = "cyberconductor";
 
 fetch(`https://api.github.com/users/${username}/repos`)
 .then(response => response.json())

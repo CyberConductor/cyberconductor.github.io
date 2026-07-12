@@ -68,12 +68,22 @@ fetch(`https://api.github.com/users/${username}/repos?per_page=100`)
     const visibleRepos = repos
         .filter(repo => repo && repo.name)
         .filter(repo => !excludedRepositories.includes(repo.name.toLowerCase()))
-        .slice(0, 6);
+        .slice(0, 5);
+
+    const featuredCard = `
+        <div class="card">
+            <h3>ApiScanner</h3>
+            <p>Coming soon — a tool for scanning and analyzing APIs.</p>
+            <a href="#projects">Coming Soon →</a>
+        </div>
+    `;
 
     if (visibleRepos.length === 0) {
-        container.innerHTML = "<p>No public repositories to display.</p>";
+        container.innerHTML = featuredCard;
         return;
     }
+
+    container.innerHTML += featuredCard;
 
     visibleRepos.forEach(repo => {
         container.innerHTML += `

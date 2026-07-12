@@ -50,7 +50,18 @@ fetch(`https://api.github.com/users/${username}/repos`)
 
     container.innerHTML = "";
 
-    repos.slice(0, 6).forEach(repo => {
+    const excludedRepositories = [
+        "meetnotify",
+        "exp",
+        "chessproject1",
+        "cyberconductor.github.io"
+    ];
+
+    const visibleRepos = repos.filter(repo => {
+        return !excludedRepositories.includes(repo.name.toLowerCase());
+    }).slice(0, 6);
+
+    visibleRepos.forEach(repo => {
 
         container.innerHTML += `
 

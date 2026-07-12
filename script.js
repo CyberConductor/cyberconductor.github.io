@@ -38,14 +38,23 @@ document.querySelectorAll(".hidden")
     .forEach(el => observer.observe(el));
 
 
-const username = "cyberconductor";
+// GitHub repositories
+const username = "CyberConductor";
 
-fetch(`https://api.github.com/users/${username}/repos`)
-.then(response => response.json())
+fetch(`https://api.github.com/users/${username}/repos?per_page=100`)
+.then(response => {
+    if (!response.ok) {
+        throw new Error(`GitHub API error: ${response.status}`);
+    }
+
+    return response.json();
+})
 .then(repos => {
+    if (!Array.isArray(repos)) {
+        throw new Error("Unexpected GitHub response");
+    }
 
-    const container =
-        document.getElementById("repo-container");
+    const container = document.getElementById("repo-container");
 
     container.innerHTML = "";
 
@@ -56,35 +65,35 @@ fetch(`https://api.github.com/users/${username}/repos`)
         "cyberconductor.github.io"
     ];
 
-    const visibleRepos = repos.filter(repo => {
-        return !excludedRepositories.includes(repo.name.toLowerCase());
-    }).slice(0, 6);
+    const visibleRepos = repos
+        .filter(repo => repo && repo.name)
+        .filter(repo => !excludedRepositories.includes(repo.name.toLowerCase()))
+        .slice(0, 6);
+
+    if (visibleRepos.length === 0) {
+        container.innerHTML = "<p>No public repositories to display.</p>";
+        return;
+    }
 
     visibleRepos.forEach(repo => {
-
         container.innerHTML += `
-
         <div class="card">
-
             <h3>${repo.name}</h3>
-
-            <p>
-                ${repo.description || "No description"}
-            </p>
-
-            <a href="${repo.html_url}">
+            <p>${repo.description || "No description"}</p>
+            <a href="${repo.html_url}" target="_blank" rel="noopener noreferrer">
                 View Repository →
             </a>
-
         </div>
-
         `;
-
     });
-
 })
 .catch(error => {
-    console.log("GitHub API error:", error);
+    console.error("GitHub API error:", error);
+    const container = document.getElementById("repo-container");
+
+    if (container) {
+        container.innerHTML = "<p>Unable to load projects right now.</p>";
+    }
 });
 
 
